@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foco Art Seguros – Proteção para o Extraordinário</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!--
+  ╔══════════════════════════════════════════════════════════════════════════╗
+  ║           FOCO ART SEGUROS — GUIA DE EDIÇÃO RÁPIDA                     ║
+  ╠══════════════════════════════════════════════════════════════════════════╣
+  ║  Busque por "EDITAR:" para encontrar todos os pontos editáveis          ║
+  ║  Ex: Ctrl+F → "EDITAR: CONTATO" para mudar telefone/email              ║
+  ╚══════════════════════════════════════════════════════════════════════════╝
+-->
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  /* EDITAR: CORES PRINCIPAIS */
+  --gold:        #C9A84C;
+  --gold-light:  #E8D5A3;
+  --gold-dim:    #8A6E30;
+  --gold-faint:  #3D2F12;
+  --deep:        #04060A;          /* topo do degradê */
+  --mid:         #0B1020;          /* meio do degradê */
+  --base:        #12181E;          /* base do degradê */
+  --surface:     rgba(255,255,255,0.04);
+  --surface-2:   rgba(255,255,255,0.07);
+  --glass:       rgba(12,16,24,0.75);
+  --glass-2:     rgba(8,10,16,0.88);
+  --text:        #F0EBE0;
+  --text-muted:  #9A9080;
+  --text-faint:  #55504A;
+  --border:      rgba(201,168,76,0.14);
+  --border-hi:   rgba(201,168,76,0.38);
+  --serif:       'Cormorant Garamond', Georgia, serif;
+  --sans:        'Inter', system-ui, sans-serif;
+  --ease-gold:   cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--deep);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 300;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ===== BACKGROUND GRADIENT + GRAIN ===== */
+.site-bg {
+  position: fixed; inset: 0; z-index: -2;
+  background: linear-gradient(160deg, var(--deep) 0%, var(--mid) 42%, var(--base) 100%);
+}
+.site-grain {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px;
+}
+
+/* ===== HERO CINEMATIC BACKGROUND ===== */
+.hero-slides {
+  position: absolute; inset: 0; overflow: hidden; z-index: 0;
+}
+.hero-slide {
+  position: absolute; inset: 0;
+  opacity: 0;
+  transition: opacity 1.8s ease;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.06);
+  animation: kenburns 8s ease-out forwards;
+}
+.hero-slide.active { opacity: 1; }
+
+@keyframes kenburns {
+  from { transform: scale(1.06); }
+  to   { transform: scale(1.0); }
+}
+
+/* Slide backgrounds via SVG pattern (no external images needed) */
+.slide-arte    { background: linear-gradient(135deg,#1a0a05 0%,#2d1410 40%,#0a0510 100%); }
+.slide-joias   { background: linear-gradient(135deg,#050a15 0%,#0f1a2e 40%,#050510 100%); }
+.slide-carros  { background: linear-gradient(135deg,#080508 0%,#180c18 40%,#060810 100%); }
+.slide-adega   { background: linear-gradient(135deg,#100304 0%,#200a0a 40%,#0a0a04 100%); }
+.slide-golfe   { background: linear-gradient(135deg,#020a05 0%,#041808 40%,#040a03 100%); }
+.slide-colecoes{ background: linear-gradient(135deg,#0a080a 0%,#1a1020 40%,#080a14 100%); }
+.slide-bolsas  { background: linear-gradient(135deg,#100808 0%,#201018 40%,#0e0810 100%); }
+.slide-corp    { background: linear-gradient(135deg,#040c14 0%,#0a1a2e 40%,#060e18 100%); }
+
+.hero-slide-pattern {
+  position: absolute; inset: 0;
+  opacity: 0.12;
+  font-size: 140px;
+  display: flex; align-items: center; justify-content: center;
+  filter: blur(2px);
+  user-select: none;
+}
+
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(4,6,10,0.35) 0%,
+    rgba(4,6,10,0.15) 40%,
+    rgba(4,6,10,0.65) 80%,
+    rgba(4,6,10,0.92) 100%
+  );
+}
+
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 4vw;
+  background: var(--glass-2);
+  backdrop-filter: blur(20px);
+  border-bottom: 0.5px solid var(--border);
+  transition: background 0.4s;
+}
+.nav-logo {
+  font-family: var(--serif); font-size: 20px; font-weight: 500;
+  color: var(--gold); text-decoration: none; letter-spacing: 0.04em; white-space: nowrap;
+}
+.nav-logo span { color: var(--text); font-weight: 300; }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  color: var(--text-muted); text-decoration: none;
+  font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-right { display: flex; gap: 12px; align-items: center; }
+.btn-nav {
+  padding: 8px 20px; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
+  text-decoration: none; display: inline-block; transition: all 0.25s;
+  font-family: var(--sans);
+}
+.btn-nav-ghost {
+  background: transparent; color: var(--text-muted);
+  border: 0.5px solid var(--text-faint);
+}
+.btn-nav-ghost:hover { border-color: var(--gold-dim); color: var(--gold); }
+.btn-nav-gold {
+  background: var(--gold); color: #04060A; border: none;
+}
+.btn-nav-gold:hover { background: var(--gold-light); }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh; position: relative;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 100px 5vw 80px; text-align: center;
+  overflow: hidden;
+}
+.hero-content { position: relative; z-index: 2; }
+
+.slide-label {
+  position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%);
+  z-index: 3; display: flex; gap: 10px; align-items: center;
+}
+.slide-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--text-faint); cursor: pointer; transition: all 0.3s;
+  border: none;
+}
+.slide-dot.active { background: var(--gold); transform: scale(1.4); }
+
+.hero-eyebrow {
+  font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+  animation: fadeUp 1s 0.2s both;
+}
+.hero-title {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(44px,6.5vw,86px); line-height: 1.06;
+  color: var(--text); max-width: 860px; margin: 0 auto 14px;
+  animation: fadeUp 1s 0.4s both;
+}
+.hero-title em { font-style: italic; color: var(--gold); }
+.hero-sub {
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: clamp(17px,2.2vw,24px); color: rgba(240,235,224,0.7);
+  max-width: 540px; margin: 0 auto 48px;
+  animation: fadeUp 1s 0.6s both;
+}
+.hero-actions {
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+  animation: fadeUp 1s 0.8s both;
+}
+.btn-hero-primary {
+  background: var(--gold); color: #04060A;
+  border: none; padding: 15px 40px;
+  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  cursor: pointer; text-decoration: none; transition: all 0.25s;
+}
+.btn-hero-primary:hover { background: var(--gold-light); }
+.btn-hero-ghost {
+  background: transparent; color: rgba(240,235,224,0.65);
+  border: 0.5px solid rgba(240,235,224,0.25); padding: 15px 40px;
+  font-family: var(--sans); font-size: 12px; font-weight: 300;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  cursor: pointer; text-decoration: none; transition: all 0.25s;
+}
+.btn-hero-ghost:hover { border-color: var(--gold-dim); color: var(--gold); }
+
+.hero-scroll-hint {
+  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+  z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  animation: fadeIn 2s 1.5s both;
+}
+.scroll-track { width: 1px; height: 36px; background: linear-gradient(to bottom, var(--gold-dim), transparent); animation: scrollPulse 2.2s infinite; }
+.scroll-lbl { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-faint); }
+
+/* ===== TRUST BAR ===== */
+.trust-bar {
+  background: var(--glass); backdrop-filter: blur(12px);
+  border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);
+  padding: 36px 5vw;
+  display: flex; justify-content: center; align-items: center;
+  gap: clamp(20px,5vw,72px); flex-wrap: wrap;
+}
+.trust-item { text-align: center; }
+.trust-number {
+  font-family: var(--serif); font-size: 42px; font-weight: 300;
+  color: var(--gold); line-height: 1; letter-spacing: -0.02em;
+}
+.trust-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-faint); margin-top: 5px; }
+.trust-sep { width: 0.5px; height: 44px; background: var(--border); }
+
+/* ===== GENERIC SECTION ===== */
+.section-wrap { padding: 96px 5vw; max-width: 1380px; margin: 0 auto; }
+.section-header { margin-bottom: 56px; }
+.section-header.center { text-align: center; }
+.eyebrow {
+  font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--gold); display: block; margin-bottom: 14px;
+}
+.h2 {
+  font-family: var(--serif); font-size: clamp(30px,3.8vw,52px);
+  font-weight: 300; line-height: 1.12; color: var(--text); margin-bottom: 16px;
+}
+.h2 em { font-style: italic; color: var(--gold); }
+.lead { font-size: 15px; line-height: 1.8; color: var(--text-muted); max-width: 560px; }
+.lead.center { margin: 0 auto; }
+
+/* ===== SEGMENTS ===== */
+.seg-hero-banner {
+  position: relative; overflow: hidden;
+  height: 220px; cursor: pointer;
+  display: flex; align-items: flex-end;
+  border: 0.5px solid var(--border);
+  transition: border-color 0.3s;
+}
+.seg-hero-banner:hover { border-color: var(--border-hi); }
+.seg-bg {
+  position: absolute; inset: 0;
+  transition: transform 0.7s var(--ease-gold);
+  background-size: cover; background-position: center;
+}
+.seg-hero-banner:hover .seg-bg { transform: scale(1.06); }
+.seg-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(4,6,10,0.92) 0%, rgba(4,6,10,0.2) 100%);
+}
+.seg-content { position: relative; z-index: 1; padding: 24px 28px; }
+.seg-icon { font-size: 26px; margin-bottom: 8px; display: block; }
+.seg-name { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--text); margin-bottom: 4px; }
+.seg-tag { font-size: 11px; color: var(--text-faint); letter-spacing: 0.06em; }
+.seg-arrow {
+  position: absolute; top: 20px; right: 20px; z-index: 1;
+  font-size: 18px; color: var(--gold-dim); opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.seg-hero-banner:hover .seg-arrow { opacity: 1; transform: translate(3px,-3px); }
+
+.segments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+  gap: 1px; background: var(--border);
+  border: 0.5px solid var(--border);
+}
+
+/* ===== SECTION DIVIDER ===== */
+.gold-rule {
+  height: 0.5px;
+  background: linear-gradient(to right, transparent, var(--border-hi), transparent);
+}
+
+/* ===== ABOUT ===== */
+.about-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.framed-quote {
+  border: 0.5px solid var(--border-hi); padding: 44px;
+  position: relative; background: var(--surface);
+}
+.framed-quote::before {
+  content:''; position: absolute;
+  top:-7px; left:-7px; right:7px; bottom:7px;
+  border: 0.5px solid var(--border); z-index:-1;
+}
+.quote-text {
+  font-family: var(--serif); font-size: 26px; font-weight: 300;
+  font-style: italic; line-height: 1.45; color: var(--text); margin-bottom: 20px;
+}
+.quote-text em { font-style: normal; color: var(--gold); }
+.quote-attr { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint); }
+.about-features { list-style: none; display: flex; flex-direction: column; gap: 18px; margin-top: 36px; }
+.af-item { display: flex; gap: 14px; align-items: flex-start; }
+.af-dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; margin-top: 8px; flex-shrink: 0; }
+.af-text { font-size: 14px; line-height: 1.65; color: var(--text-muted); }
+.af-text strong { color: var(--text); font-weight: 400; }
+.stat-mini-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: var(--border); border: 0.5px solid var(--border); margin-top: 28px;
+}
+.stat-mini {
+  background: var(--glass); padding: 24px 20px;
+}
+.stat-mini-n { font-family: var(--serif); font-size: 30px; color: var(--gold); line-height: 1; }
+.stat-mini-l { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); margin-top: 5px; }
+
+/* ===== PROCESS ===== */
+.process-steps {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px; background: var(--border); border: 0.5px solid var(--border);
+}
+.p-step { background: var(--glass); padding: 36px 28px; position: relative; overflow: hidden; }
+.p-step::after {
+  content:''; position: absolute; top:0; left:0; right:0; height:2px;
+  background: var(--gold); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s var(--ease-gold);
+}
+.p-step:hover::after { transform: scaleX(1); }
+.p-num { font-family: var(--serif); font-size: 44px; font-weight: 300; color: var(--border-hi); line-height: 1; margin-bottom: 14px; }
+.p-title { font-family: var(--serif); font-size: 17px; font-weight: 400; color: var(--text); margin-bottom: 8px; }
+.p-desc { font-size: 13px; line-height: 1.7; color: var(--text-faint); }
+
+/* ===== PARTNERS ===== */
+.partners-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 1px; background: var(--border); border: 0.5px solid var(--border); }
+.partner-card {
+  background: var(--glass); padding: 32px 28px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: background 0.3s;
+}
+.partner-card:hover { background: var(--surface-2); }
+.partner-logo {
+  font-family: var(--serif); font-size: 22px; font-weight: 400;
+  color: var(--gold); letter-spacing: 0.02em;
+}
+.partner-type { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-faint); }
+.partner-desc { font-size: 13px; line-height: 1.6; color: var(--text-muted); }
+
+/* ===== BLOG ===== */
+.blog-tabs { display: flex; gap: 0; border-bottom: 0.5px solid var(--border); margin-bottom: 40px; flex-wrap: wrap; }
+.blog-tab {
+  padding: 12px 24px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-faint); cursor: pointer; border: none; background: none;
+  border-bottom: 2px solid transparent; margin-bottom: -0.5px;
+  transition: all 0.2s; font-family: var(--sans);
+}
+.blog-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+.blog-tab:hover { color: var(--text-muted); }
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1px; background: var(--border); border: 0.5px solid var(--border); }
+.blog-card {
+  background: var(--glass); padding: 0; overflow: hidden;
+  cursor: pointer; transition: background 0.3s;
+}
+.blog-card:hover { background: var(--surface-2); }
+.blog-card-img {
+  height: 130px; font-size: 64px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.blog-card-body { padding: 24px; }
+.blog-card-tag { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 8px; }
+.blog-card-title { font-family: var(--serif); font-size: 19px; font-weight: 400; color: var(--text); line-height: 1.3; margin-bottom: 8px; }
+.blog-card-excerpt { font-size: 13px; line-height: 1.65; color: var(--text-muted); }
+.blog-card-date { font-size: 11px; color: var(--text-faint); margin-top: 14px; }
+.blog-panel { display: none; }
+.blog-panel.active { display: block; }
+
+/* ===== QUOTE FORM ===== */
+.quote-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 72px; align-items: start; }
+.form-wrap {
+  background: var(--glass); backdrop-filter: blur(10px);
+  border: 0.5px solid var(--border); padding: 44px;
+}
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-faint); }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: rgba(255,255,255,0.04); border: 0.5px solid var(--border);
+  color: var(--text); padding: 11px 14px;
+  font-family: var(--sans); font-size: 14px; font-weight: 300;
+  outline: none; transition: border-color 0.2s; width: 100%;
+  -webkit-appearance: none; appearance: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--gold-dim); }
+.form-group select option { background: #12181E; color: var(--text); }
+.form-group textarea { min-height: 110px; resize: vertical; }
+::placeholder { color: var(--text-faint); font-family: var(--sans); }
+.form-col-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.btn-submit {
+  width: 100%; background: var(--gold); color: #04060A;
+  border: none; padding: 15px; cursor: pointer;
+  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.2s; margin-top: 6px;
+}
+.btn-submit:hover { background: var(--gold-light); }
+.form-fine { font-size: 11px; color: var(--text-faint); text-align: center; margin-top: 6px; }
+
+/* Quick suggestion pills */
+.suggestion-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.pill {
+  padding: 6px 14px; font-size: 11px; letter-spacing: 0.08em;
+  border: 0.5px solid var(--border); color: var(--text-muted);
+  cursor: pointer; transition: all 0.2s; background: none; font-family: var(--sans);
+  border-radius: 2px;
+}
+.pill:hover, .pill.selected { border-color: var(--gold-dim); color: var(--gold); background: var(--gold-faint); }
+
+.contact-info-block { display: flex; flex-direction: column; gap: 28px; }
+.ci-row { border-left: 1px solid var(--border-hi); padding-left: 22px; }
+.ci-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 6px; }
+.ci-value { font-family: var(--serif); font-size: 17px; font-weight: 300; color: var(--text); line-height: 1.65; }
+.ci-value a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+.ci-value a:hover { color: var(--gold); }
+
+/* ===== PORTAL CLIENTE ===== */
+.portal-wrap {
+  background: var(--glass); backdrop-filter: blur(10px);
+  border: 0.5px solid var(--border); padding: 56px; max-width: 480px; margin: 0 auto;
+}
+.portal-title { font-family: var(--serif); font-size: 28px; font-weight: 300; color: var(--text); margin-bottom: 6px; }
+.portal-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; line-height: 1.6; }
+.portal-tabs { display: flex; gap: 1px; background: var(--border); border: 0.5px solid var(--border); margin-bottom: 28px; }
+.ptab {
+  flex: 1; padding: 11px; font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; text-align: center; cursor: pointer;
+  background: var(--glass); color: var(--text-faint);
+  border: none; font-family: var(--sans); transition: all 0.2s;
+}
+.ptab.active { background: var(--gold-faint); color: var(--gold); }
+.portal-form { display: flex; flex-direction: column; gap: 14px; }
+.portal-form-panel { display: none; }
+.portal-form-panel.active { display: flex; flex-direction: column; gap: 14px; }
+.btn-portal {
+  background: var(--gold); color: #04060A; border: none; padding: 13px;
+  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: background 0.2s;
+}
+.btn-portal:hover { background: var(--gold-light); }
+.portal-note { font-size: 11px; color: var(--text-faint); text-align: center; }
+
+.dashboard-mock {
+  display: none; flex-direction: column; gap: 16px;
+}
+.dashboard-mock.visible { display: flex; }
+.dash-header { display: flex; justify-content: space-between; align-items: center; }
+.dash-greeting { font-family: var(--serif); font-size: 22px; color: var(--text); }
+.dash-logout { font-size: 11px; color: var(--text-faint); cursor: pointer; background: none; border: none; font-family: var(--sans); }
+.dash-logout:hover { color: var(--gold); }
+.policy-card {
+  background: var(--surface-2); border: 0.5px solid var(--border);
+  padding: 18px 20px; display: flex; flex-direction: column; gap: 6px;
+}
+.policy-num { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-dim); }
+.policy-name { font-family: var(--serif); font-size: 17px; color: var(--text); }
+.policy-meta { font-size: 12px; color: var(--text-faint); }
+.policy-status {
+  display: inline-block; font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 3px 10px;
+  background: rgba(30,80,40,0.4); color: #7ee8a2; align-self: flex-start;
+}
+
+/* ===== SECTION STRIPE (alternating BG) ===== */
+.stripe { background: var(--glass); backdrop-filter: blur(4px); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
+
+/* ===== FOOTER ===== */
+footer {
+  background: rgba(4,6,10,0.96); border-top: 0.5px solid var(--border);
+  padding: 56px 5vw 36px;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 44px; max-width: 1200px; margin-left: auto; margin-right: auto; }
+.footer-brand { font-family: var(--serif); font-size: 24px; font-weight: 400; color: var(--gold); margin-bottom: 10px; }
+.footer-tagline { font-size: 13px; color: var(--text-faint); line-height: 1.65; max-width: 260px; }
+.footer-col h4 { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 16px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.footer-col a { font-size: 13px; color: var(--text-faint); text-decoration: none; transition: color 0.2s; }
+.footer-col a:hover { color: var(--gold); }
+.footer-bottom { border-top: 0.5px solid var(--border); padding-top: 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; max-width: 1200px; margin: 0 auto; }
+.footer-copy, .footer-reg { font-size: 11px; color: var(--text-faint); }
+
+/* ===== WHATSAPP FAB ===== */
+.wa-fab {
+  position: fixed; bottom: 26px; right: 26px; z-index: 600;
+  width: 54px; height: 54px; border-radius: 50%;
+  background: #25D366; display: flex; align-items: center; justify-content: center;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+.wa-fab:hover { transform: scale(1.1); }
+.wa-fab svg { width: 26px; height: 26px; fill: white; }
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 700;
+  background: rgba(4,6,10,0.88); backdrop-filter: blur(6px);
+  display: none; align-items: center; justify-content: center; padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: #12181E; border: 0.5px solid var(--border-hi);
+  max-width: 580px; width: 100%; padding: 48px; position: relative;
+  animation: fadeUp 0.3s ease both; max-height: 90vh; overflow-y: auto;
+}
+.modal-close {
+  position: absolute; top: 18px; right: 18px;
+  background: none; border: none; color: var(--text-faint);
+  font-size: 22px; cursor: pointer; line-height: 1; transition: color 0.2s;
+}
+.modal-close:hover { color: var(--text); }
+.modal-icon { font-size: 36px; margin-bottom: 16px; display: block; }
+.modal-title { font-family: var(--serif); font-size: 28px; font-weight: 300; color: var(--text); margin-bottom: 6px; }
+.modal-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 28px; line-height: 1.6; }
+.modal-features { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.modal-features li {
+  font-size: 13px; color: var(--text-muted);
+  padding: 12px 16px; border-left: 1px solid var(--border-hi);
+  background: var(--surface); line-height: 1.6;
+}
+.btn-modal-cta {
+  display: inline-block; margin-top: 28px;
+  background: var(--gold); color: #04060A;
+  border: none; padding: 13px 32px; font-family: var(--sans);
+  font-size: 12px; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; cursor: pointer; text-decoration: none;
+  transition: background 0.2s;
+}
+.btn-modal-cta:hover { background: var(--gold-light); }
+
+/* ===== TICKER ===== */
+.ticker { overflow: hidden; background: var(--glass); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); padding: 12px 0; }
+.ticker-track { display: flex; animation: ticker 32s linear infinite; width: max-content; }
+.ticker-item { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-faint); padding: 0 44px; white-space: nowrap; display: flex; align-items: center; gap: 44px; }
+.tdot { width: 3px; height: 3px; background: var(--gold); border-radius: 50%; flex-shrink:0; }
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
+@keyframes scrollPulse { 0%,100%{opacity:.25;} 50%{opacity:1;} }
+@keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+.reveal { opacity:0; transform:translateY(24px); transition: opacity .75s ease, transform .75s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .about-wrap, .quote-grid { grid-template-columns: 1fr; gap: 44px; }
+  .process-steps { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .process-steps { grid-template-columns: 1fr; }
+  .form-col-2 { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .portal-wrap { padding: 32px 24px; }
+}
+
+/* ===== ADMIN BADGE ===== */
+.admin-tag {
+  display: inline-block; font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; padding: 3px 10px; background: var(--gold-faint);
+  color: var(--gold); vertical-align: middle; margin-left: 10px; cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="site-bg"></div>
+<div class="site-grain"></div>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav id="main-nav">
+  <!-- EDITAR: LOGO / NOME -->
+  <a href="#inicio" class="nav-logo">Foco Art <span>Seguros</span></a>
+  <ul class="nav-links">
+    <li><a href="#segmentos">Segmentos</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#parceiros">Parceiros</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contato">Contato</a></li>
+    <li><a href="#portal">Área do Cliente</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#contato" class="btn-nav btn-nav-gold">Solicitar Cotação</a>
+  </div>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero" id="inicio">
+  <!-- Cinematic background slides -->
+  <div class="hero-slides" id="hero-slides">
+    <!-- EDITAR: SLIDES - altere os gradientes / emojis conforme desejado -->
+    <div class="hero-slide slide-arte active" data-index="0">
+      <div class="hero-slide-pattern">🎨</div>
+    </div>
+    <div class="hero-slide slide-joias" data-index="1">
+      <div class="hero-slide-pattern">💎</div>
+    </div>
+    <div class="hero-slide slide-carros" data-index="2">
+      <div class="hero-slide-pattern">🏎️</div>
+    </div>
+    <div class="hero-slide slide-adega" data-index="3">
+      <div class="hero-slide-pattern">🍷</div>
+    </div>
+    <div class="hero-slide slide-golfe" data-index="4">
+      <div class="hero-slide-pattern">⛳</div>
+    </div>
+    <div class="hero-slide slide-colecoes" data-index="5">
+      <div class="hero-slide-pattern">🏺</div>
+    </div>
+    <div class="hero-slide slide-bolsas" data-index="6">
+      <div class="hero-slide-pattern">👜</div>
+    </div>
+    <div class="hero-slide slide-corp" data-index="7">
+      <div class="hero-slide-pattern">🏛️</div>
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <!-- EDITAR: TEXTO HERO -->
+    <p class="hero-eyebrow">Seguro de Alto Padrão · Rio de Janeiro · Desde 2004</p>
+    <h1 class="hero-title">Proteção para o que é <em>verdadeiramente extraordinário</em></h1>
+    <p class="hero-sub">Especialistas em seguros para arte, coleções e o mercado de luxo</p>
+    <div class="hero-actions">
+      <a href="#contato" class="btn-hero-primary">Solicitar Cotação Exclusiva</a>
+      <a href="#segmentos" class="btn-hero-ghost">Conhecer Segmentos</a>
+    </div>
+  </div>
+
+  <!-- Slide navigation dots -->
+  <div class="slide-label" id="slide-dots">
+    <button class="slide-dot active" onclick="goSlide(0)"></button>
+    <button class="slide-dot" onclick="goSlide(1)"></button>
+    <button class="slide-dot" onclick="goSlide(2)"></button>
+    <button class="slide-dot" onclick="goSlide(3)"></button>
+    <button class="slide-dot" onclick="goSlide(4)"></button>
+    <button class="slide-dot" onclick="goSlide(5)"></button>
+    <button class="slide-dot" onclick="goSlide(6)"></button>
+    <button class="slide-dot" onclick="goSlide(7)"></button>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <div class="scroll-track"></div>
+    <span class="scroll-lbl">Explorar</span>
+  </div>
+</section>
+
+<!-- ═══════════════ TICKER ═══════════════ -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item">
+      Obras de Arte <span class="tdot"></span>
+      Joias &amp; Relógios de Luxo <span class="tdot"></span>
+      Automóveis de Colecionador <span class="tdot"></span>
+      Adegas &amp; Vinhos Raros <span class="tdot"></span>
+      Hole in One <span class="tdot"></span>
+      Carrinhos de Golfe <span class="tdot"></span>
+      Coleções Especiais <span class="tdot"></span>
+      Bolsas de Luxo <span class="tdot"></span>
+      Riscos Corporativos · D&amp;O · Cyber · Garantia <span class="tdot"></span>
+      Cobertura Nacional &amp; Internacional <span class="tdot"></span>
+    </div>
+    <div class="ticker-item" aria-hidden="true">
+      Obras de Arte <span class="tdot"></span>
+      Joias &amp; Relógios de Luxo <span class="tdot"></span>
+      Automóveis de Colecionador <span class="tdot"></span>
+      Adegas &amp; Vinhos Raros <span class="tdot"></span>
+      Hole in One <span class="tdot"></span>
+      Carrinhos de Golfe <span class="tdot"></span>
+      Coleções Especiais <span class="tdot"></span>
+      Cobertura Nacional &amp; Internacional <span class="tdot"></span>
+      Coleções Especiais <span class="tdot"></span>
+      Bolsas de Luxo <span class="tdot"></span>
+      Riscos Corporativos · D&amp;O · Cyber · Garantia <span class="tdot"></span>
+  </div>
+</div>
+
+<!-- ═══════════════ TRUST BAR ═══════════════ -->
+<div class="trust-bar reveal">
+  <!-- EDITAR: NÚMEROS DE CONFIANÇA -->
+  <div class="trust-item">
+    <div class="trust-number" data-target="20" data-suffix="+">0</div>
+    <div class="trust-label">Anos de Expertise</div>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="trust-number" data-target="600" data-suffix="+">0</div>
+    <div class="trust-label">Clientes Atendidos</div>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="trust-number">R$2B+</div>
+    <div class="trust-label">Ativos Segurados</div>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="trust-number" data-target="9">0</div>
+    <div class="trust-label">Segmentos de Luxo</div>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="trust-number" data-target="15" data-suffix="+">0</div>
+    <div class="trust-label">Seguradoras Parceiras</div>
+  </div>
+</div>
+
+<!-- ═══════════════ SEGMENTS ═══════════════ -->
+<section id="segmentos">
+  <div class="section-wrap">
+    <div class="section-header center reveal">
+      <span class="eyebrow">Segmentos Especializados</span>
+      <h2 class="h2">Cobertura sob medida para <em>cada paixão</em></h2>
+      <p class="lead center">Cada bem extraordinário merece uma proteção igualmente especial. Desenvolvemos soluções únicas para cada nicho do mercado de luxo.</p>
+    </div>
+
+    <!-- EDITAR: SEGMENTOS - adicione/remova cards conforme necessário -->
+    <div class="segments-grid reveal">
+
+      <div class="seg-hero-banner" onclick="openModal('arte')">
+        <div class="seg-bg slide-arte"></div>
+        <div class="seg-overlay"></div>
+        <div class="seg-content">
+          <span class="seg-icon">🎨</span>
+          <div class="seg-name">Obras de Arte</div>
+          <div class="seg-tag">Pinturas · Esculturas · Fotografias · Instalações</div>
+        </div>
+        <span class="seg-arrow">↗</span>
+      </div>
+
+      <div class="seg-hero-banner" onclick="openModal('joias')">
+        <div class="seg-bg slide-joias"></div>
+        <div class="seg-overlay"></div>
+        <div class="seg-content">
+          <span class="seg-icon">💎</span>
+          <div class="seg-name">Joias &amp; Relógios</div>
+          <div class="seg-tag">Alta Joalheria · Rolex · Patek · AP</div>
+        </div>
+        <span class="seg-arrow">↗</span>
+      </div>
+
+      <div class="seg-hero-banner" onclick="openModal('carros')">
+        <div class="seg-bg slide-carros"></div>
+        <div class="seg-overlay"></div>
+        <div class="seg-content">
+          <span class="seg-icon">🏎️</span>
+          <div class="seg-name">Automóveis de Colecionador</div>
+          <div class="seg-tag">Clássicos · Supercars · Alto Valor</div>
+        </div>
+        <span class="seg-arrow">↗</span>
+      </div>
+
+      <div class="seg-hero-banner" onclick="openModal('adega')">
+        <div class="seg-bg slide-adega"></div>
+        <div class="seg-overlay"></div>
+        <div class="seg-content">
+          <span class="seg-icon">🍷</span>
+          <div class="seg-name">Adegas &amp; Vinhos Finos</div>
+          <div class="seg-tag">Coleções · Adegas Climatizadas · Importação</div>
+        </div>
+        <span class="seg-arrow">↗</span>
+      </div>
+
+      <div class="seg-hero-banner" onclick="openModal('golfe')">
+        <div class="seg-bg slide-golfe"></div>
+        <div class="seg-overlay"></div>
+        <div class="seg-content">
+          <span class="seg-icon">⛳</span>
+          <div class="seg-name">Golfe &amp; Hole in One</div>
+          <div class="seg-tag">Torneios · Carrinhos · Equipamentos Premium</div>
+        </div>
+        <span class="seg-arrow">↗</span>
+      </div>
+
+      <div class="seg-hero-banner" onclick="openModal('colecoes')">
+        <div class="seg-bg slide-colecoes"></div>
+        <div class="seg-overlay"></div>
+        <div class="seg-content">
+          <span class="seg-icon">🏺</span>
+          <div class="seg-name">Coleções Especiais</div>
+          <div class="seg-tag">Selos · Moedas · Cards · Tênis · Instrumentos</div>
+        </div>
+        <span class="seg-arrow">↗</span>
+      </div>
+
+      <div class="seg-hero-banner" onclick="openModal('bolsas')">
+        <div class="seg-bg slide-bolsas"></div>
+        <div class="seg-overlay"></div>
+        <div class="seg-content">
+          <span class="seg-icon">👜</span>
+          <div class="seg-name">Bolsas de Luxo</div>
+          <div class="seg-tag">Hermès · Chanel · Louis Vuitton · Dior · Investimento</div>
+        </div>
+        <span class="seg-arrow">↗</span>
+      </div>
+
+      <div class="seg-hero-banner" onclick="openModal('corp')">
+        <div class="seg-bg slide-corp"></div>
+        <div class="seg-overlay"></div>
+        <div class="seg-content">
+          <span class="seg-icon">🏛️</span>
+          <div class="seg-name">Riscos Corporativos</div>
+          <div class="seg-tag">D&amp;O · Cyber · Garantia · E&amp;O · RC · Saúde &amp; Vida Empresarial</div>
+        </div>
+        <span class="seg-arrow">↗</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section id="sobre">
+  <div class="section-wrap">
+    <div class="about-wrap">
+      <div class="reveal">
+        <!-- EDITAR: TEXTO SOBRE -->
+        <span class="eyebrow">Sobre a Foco Art Seguros</span>
+        <h2 class="h2">Uma corretora boutique para quem <em>entende o valor do que possui</em></h2>
+        <p class="lead" style="margin-bottom:20px;">Fundada em 2004 no Rio de Janeiro, somos uma corretora especializada exclusivamente no mercado de luxo e alto patrimônio. Nosso diferencial está na profundidade de conhecimento de cada segmento que assessoramos — não somos generalistas.</p>
+        <p class="lead">Atendemos colecionadores, famílias de alto patrimônio, galerias, clubes de golfe e empresas que possuem bens de alto valor no Brasil e no exterior, sempre com discrição, agilidade e compromisso.</p>
+        <ul class="about-features">
+          <li class="af-item"><div class="af-dot"></div><p class="af-text"><strong>Avaliação independente</strong> — rede de peritos certificados para laudos precisos de obras, joias e automóveis históricos.</p></li>
+          <li class="af-item"><div class="af-dot"></div><p class="af-text"><strong>Consultor dedicado</strong> — cada cliente tem um profissional exclusivo disponível 24h para emergências.</p></li>
+          <li class="af-item"><div class="af-dot"></div><p class="af-text"><strong>Cobertura global</strong> — apólices com alcance internacional para bens em trânsito ou residências no exterior.</p></li>
+          <li class="af-item"><div class="af-dot"></div><p class="af-text"><strong>Regulação de sinistros</strong> — acompanhamos todo o processo até o encerramento, sem burocracia para o cliente.</p></li>
+          <li class="af-item"><div class="af-dot"></div><p class="af-text"><strong>Confidencialidade total</strong> — protocolo rígido de privacidade para inventários e dados patrimoniais.</p></li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <div class="framed-quote">
+          <!-- EDITAR: CITAÇÃO INSTITUCIONAL -->
+          <p class="quote-text">Cada coleção conta uma história. Nossa missão é garantir que ela <em>continue sendo contada</em>.</p>
+          <p class="quote-attr">— Filosofia Foco Art Seguros · Rio de Janeiro</p>
+        </div>
+        <div class="stat-mini-grid">
+          <div class="stat-mini"><div class="stat-mini-n">100%</div><div class="stat-mini-l">Foco em Luxo</div></div>
+          <div class="stat-mini"><div class="stat-mini-n">BR+INT</div><div class="stat-mini-l">Cobertura</div></div>
+          <div class="stat-mini"><div class="stat-mini-n">24/7</div><div class="stat-mini-l">Suporte</div></div>
+          <div class="stat-mini"><div class="stat-mini-n">A+</div><div class="stat-mini-l">Seguradoras</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- ═══════════════ PROCESS ═══════════════ -->
+<section class="stripe">
+  <div class="section-wrap">
+    <div class="section-header center reveal">
+      <span class="eyebrow">Como Funciona</span>
+      <h2 class="h2">Do primeiro contato à <em>proteção completa</em></h2>
+    </div>
+    <!-- EDITAR: ETAPAS DO PROCESSO -->
+    <div class="process-steps reveal">
+      <div class="p-step">
+        <div class="p-num">01</div>
+        <h3 class="p-title">Consulta Inicial</h3>
+        <p class="p-desc">Reunião confidencial para entender seu patrimônio, necessidades e expectativas de proteção.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-num">02</div>
+        <h3 class="p-title">Avaliação &amp; Inventário</h3>
+        <p class="p-desc">Levantamento com laudos periciais para valoração precisa e documentação completa.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-num">03</div>
+        <h3 class="p-title">Proposta Personalizada</h3>
+        <p class="p-desc">Soluções sob medida com as melhores seguradoras parceiras, nacionais e internacionais.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-num">04</div>
+        <h3 class="p-title">Gestão Contínua</h3>
+        <p class="p-desc">Acompanhamento permanente, renovações proativas e suporte ágil em sinistros.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- ═══════════════ PARTNERS ═══════════════ -->
+<section id="parceiros">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <span class="eyebrow">Parcerias &amp; Ecossistema de Negócios</span>
+      <h2 class="h2">Uma rede de excelência a serviço <em>do seu patrimônio</em></h2>
+      <p class="lead">A Foco Art Seguros opera dentro de um ecossistema cuidadosamente construído de parceiros especializados. Cada relação foi desenvolvida para entregar ao cliente o mais alto nível de expertise em cada etapa da proteção patrimonial.</p>
+    </div>
+
+    <!-- EDITAR: PARCEIROS - adicione/edite cards de parceiros -->
+    <div class="partners-grid reveal">
+
+      <div class="partner-card">
+        <div class="partner-logo">Seguradoras Premium</div>
+        <div class="partner-type">Capacidade Financeira</div>
+        <p class="partner-desc">Parceria com as principais seguradoras nacionais e internacionais com ratings A+ para riscos de alto valor. IRB Brasil, Chubb, Zurich, AIG, Lloyd's e outras.</p>
+      </div>
+
+      <div class="partner-card">
+        <div class="partner-logo">Galerias de Arte</div>
+        <div class="partner-type">Mercado de Arte</div>
+        <p class="partner-desc">Acordo preferencial com galerias e leiloeiras do Rio de Janeiro, São Paulo e Miami para avaliação, transporte e documentação de obras.</p>
+      </div>
+
+      <div class="partner-card">
+        <div class="partner-logo">Peritos Certificados</div>
+        <div class="partner-type">Avaliação Especializada</div>
+        <p class="partner-desc">Rede de avaliadores independentes certificados para joias, relógios, automóveis clássicos, vinhos raros e obras de arte em todo o Brasil.</p>
+      </div>
+
+      <div class="partner-card">
+        <div class="partner-logo">Clubes de Golfe</div>
+        <div class="partner-type">Setor de Golfe</div>
+        <p class="partner-desc">Parceria com os principais clubes do Brasil para seguro hole in one, torneios amadores e profissionais, e proteção de carrinhos elétricos.</p>
+      </div>
+
+      <div class="partner-card">
+        <div class="partner-logo">Leiloeiras</div>
+        <div class="partner-type">Mercado Secundário</div>
+        <p class="partner-desc">Convênio com leiloeiras especializadas para obras de arte, automóveis históricos, joias e coleções — incluindo cobertura durante eventos de leilão.</p>
+      </div>
+
+      <div class="partner-card">
+        <div class="partner-logo">Advocacia &amp; Compliance</div>
+        <div class="partner-type">Suporte Jurídico</div>
+        <p class="partner-desc">Escritórios jurídicos especializados em direito securitário para assessoria em sinistros complexos, revisão contratual e proteção patrimonial.</p>
+      </div>
+
+      <div class="partner-card">
+        <div class="partner-logo">Fine Art Logistics</div>
+        <div class="partner-type">Transporte Especializado</div>
+        <p class="partner-desc">Transportadoras especializadas em obras de arte e bens frágeis de alto valor, com seguro de transporte integrado para exposições e mudanças.</p>
+      </div>
+
+      <div class="partner-card">
+        <div class="partner-logo">Private Banking</div>
+        <div class="partner-type">Gestão Patrimonial</div>
+        <p class="partner-desc">Integração com gestoras de patrimônio e family offices para uma visão holística da proteção de ativos tangíveis e coleções pessoais.</p>
+      </div>
+
+    </div>
+
+    <!-- Negócios / Proposta de valor -->
+    <div class="reveal" style="margin-top:64px; background:var(--glass); border:0.5px solid var(--border); padding:48px; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;">
+      <div>
+        <span class="eyebrow">Oportunidades de Parceria</span>
+        <h3 style="font-family:var(--serif);font-size:clamp(22px,2.5vw,32px);font-weight:300;color:var(--text);line-height:1.2;margin-bottom:16px;">
+          Seja um parceiro <em style="color:var(--gold);font-style:italic;">estratégico</em> da Foco Art
+        </h3>
+        <p style="font-size:14px;line-height:1.75;color:var(--text-muted);">
+          Convidamos galerias, relojoarias, concessionárias de luxo, clubes de golfe, adegas, escritórios de advocacia e gestoras de patrimônio a integrar nossa rede exclusiva de parceiros.
+          <br><br>
+          Oferecemos comissionamento competitivo, suporte técnico especializado, co-marketing e acesso a uma base de clientes de alto poder aquisitivo já fidelizados.
+        </p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="border-left:2px solid var(--gold-dim);padding-left:20px;">
+          <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:4px;">Para Parceiros Comerciais</div>
+          <div style="font-size:14px;color:var(--text-muted);">Comissionamento por indicação de negócios com apólices emitidas</div>
+        </div>
+        <div style="border-left:2px solid var(--gold-dim);padding-left:20px;">
+          <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:4px;">Para Corretores Parceiros</div>
+          <div style="font-size:14px;color:var(--text-muted);">Co-corretagem em riscos especiais com nossa especialização técnica</div>
+        </div>
+        <div style="border-left:2px solid var(--gold-dim);padding-left:20px;">
+          <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:4px;">Para Peritos &amp; Avaliadores</div>
+          <div style="font-size:14px;color:var(--text-muted);">Integração à nossa rede técnica com demanda contínua de laudos</div>
+        </div>
+        <a href="mailto:parcerias@focoartseguros.com.br" style="display:inline-block;margin-top:6px;background:transparent;border:0.5px solid var(--gold-dim);color:var(--gold);padding:12px 28px;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:all .25s;align-self:flex-start;" onmouseover="this.style.background=this.style.background='var(--gold)';this.style.color='#04060A';" onmouseout="this.style.background='transparent';this.style.color='var(--gold)';">
+          Falar sobre Parceria
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- ═══════════════ BLOG ═══════════════ -->
+<section id="blog" class="stripe">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <span class="eyebrow">Blog &amp; Conteúdo Especializado</span>
+      <h2 class="h2">Conhecimento que <em>protege e valoriza</em></h2>
+      <p class="lead">Artigos, análises de mercado e guias práticos escritos por especialistas em cada segmento do mercado de luxo.</p>
+    </div>
+
+    <!-- EDITAR: CATEGORIAS DO BLOG - adicione/remova abas -->
+    <div class="blog-tabs reveal">
+      <button class="blog-tab active" onclick="switchBlog('all',this)">Todos</button>
+      <button class="blog-tab" onclick="switchBlog('arte',this)">Obras de Arte</button>
+      <button class="blog-tab" onclick="switchBlog('joias',this)">Joias &amp; Relógios</button>
+      <button class="blog-tab" onclick="switchBlog('carros',this)">Automóveis</button>
+      <button class="blog-tab" onclick="switchBlog('adega',this)">Vinhos</button>
+      <button class="blog-tab" onclick="switchBlog('golfe',this)">Golfe</button>
+      <button class="blog-tab" onclick="switchBlog('bolsas',this)">Bolsas de Luxo</button>
+      <button class="blog-tab" onclick="switchBlog('corp',this)">Riscos Corporativos</button>
+    </div>
+
+    <!-- EDITAR: ARTIGOS DO BLOG - adicione novos data-cat="categoria" -->
+    <div class="blog-grid reveal" id="blog-grid">
+
+      <div class="blog-card" data-cat="arte" onclick="openBlogPost('Como avaliar corretamente sua coleção de arte para o seguro','arte')">
+        <div class="blog-card-img slide-arte"><span style="filter:blur(1px)">🎨</span></div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag">Obras de Arte</div>
+          <h3 class="blog-card-title">Como avaliar corretamente sua coleção de arte para o seguro</h3>
+          <p class="blog-card-excerpt">O laudo de avaliação é a peça-chave para garantir que você receberá o valor justo em caso de sinistro. Saiba o que deve constar no documento.</p>
+          <div class="blog-card-date">15 Mai 2025 · 6 min de leitura</div>
+        </div>
+      </div>
+
+      <div class="blog-card" data-cat="joias" onclick="openBlogPost('Relógios de investimento: como o seguro protege seu patrimônio','joias')">
+        <div class="blog-card-img slide-joias"><span style="filter:blur(1px)">💎</span></div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag">Joias &amp; Relógios</div>
+          <h3 class="blog-card-title">Relógios de investimento: como o seguro protege seu patrimônio</h3>
+          <p class="blog-card-excerpt">Com Rolex e Patek Philippe valorizando até 40% ao ano, a proteção adequada tornou-se essencial para quem investe em relojoaria de luxo.</p>
+          <div class="blog-card-date">03 Abr 2025 · 5 min de leitura</div>
+        </div>
+      </div>
+
+      <div class="blog-card" data-cat="carros" onclick="openBlogPost('Seguro para carros clássicos: valor acordado vs. tabela FIPE','carros')">
+        <div class="blog-card-img slide-carros"><span style="filter:blur(1px)">🏎️</span></div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag">Automóveis</div>
+          <h3 class="blog-card-title">Seguro para carros clássicos: valor acordado vs. tabela FIPE</h3>
+          <p class="blog-card-excerpt">A maioria dos donos de veículos clássicos não sabe que a tabela FIPE pode subestimar dramaticamente o valor real do seu automóvel.</p>
+          <div class="blog-card-date">22 Mar 2025 · 7 min de leitura</div>
+        </div>
+      </div>
+
+      <div class="blog-card" data-cat="adega" onclick="openBlogPost('Vinho como investimento: os riscos que você precisa cobrir','adega')">
+        <div class="blog-card-img slide-adega"><span style="filter:blur(1px)">🍷</span></div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag">Vinhos</div>
+          <h3 class="blog-card-title">Vinho como investimento: os riscos que você precisa cobrir</h3>
+          <p class="blog-card-excerpt">Bordeaux de safras raras podem ultrapassar R$50 mil a garrafa. Entenda os riscos específicos de uma adega de alto valor e como mitigá-los.</p>
+          <div class="blog-card-date">10 Fev 2025 · 8 min de leitura</div>
+        </div>
+      </div>
+
+      <div class="blog-card" data-cat="golfe" onclick="openBlogPost('Hole in One: o que é, como funciona e por que segurar','golfe')">
+        <div class="blog-card-img slide-golfe"><span style="filter:blur(1px)">⛳</span></div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag">Golfe</div>
+          <h3 class="blog-card-title">Hole in One: o que é, como funciona e por que segurar</h3>
+          <p class="blog-card-excerpt">Um hole in one pode gerar obrigações financeiras significativas para o atleta. Saiba como o seguro protege torneios e jogadores de todas as categorias.</p>
+          <div class="blog-card-date">28 Jan 2025 · 4 min de leitura</div>
+        </div>
+      </div>
+
+      <div class="blog-card" data-cat="arte" onclick="openBlogPost('Transporte de obras de arte: os pontos críticos da apólice','arte')">
+        <div class="blog-card-img slide-arte"><span style="filter:blur(1px)">🎨</span></div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag">Obras de Arte</div>
+          <h3 class="blog-card-title">Transporte de obras de arte: os pontos críticos da apólice</h3>
+          <p class="blog-card-excerpt">A maioria dos danos a obras de arte ocorre durante o transporte. Checklist completo dos requisitos mínimos para uma cobertura adequada.</p>
+          <div class="blog-card-date">14 Jan 2025 · 6 min de leitura</div>
+        </div>
+      </div>
+
+      <div class="blog-card" data-cat="bolsas" onclick="openBlogPost('Birkin como investimento: por que seu seguro residencial não é suficiente','bolsas')">
+        <div class="blog-card-img slide-bolsas"><span style="filter:blur(1px)">👜</span></div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag">Bolsas de Luxo</div>
+          <h3 class="blog-card-title">Birkin como investimento: por que seu seguro residencial não é suficiente</h3>
+          <p class="blog-card-excerpt">O mercado secundário de bolsas de luxo cresceu mais de 80% em cinco anos. Entenda como proteger adequadamente peças que valem mais que um apartamento.</p>
+          <div class="blog-card-date">20 Mai 2025 · 5 min de leitura</div>
+        </div>
+      </div>
+
+      <div class="blog-card" data-cat="corp" onclick="openBlogPost('D&O, Cyber e E&O: os seguros que sua empresa não pode ignorar em 2025','corp')">
+        <div class="blog-card-img slide-corp"><span style="filter:blur(1px)">🏛️</span></div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag">Riscos Corporativos</div>
+          <h3 class="blog-card-title">D&O, Cyber e E&O: os seguros que sua empresa não pode ignorar em 2025</h3>
+          <p class="blog-card-excerpt">Com a LGPD em vigor e o ambiente regulatório em evolução, gestores e empresas precisam de coberturas específicas que vão além do seguro empresarial tradicional.</p>
+          <div class="blog-card-date">02 Jun 2025 · 7 min de leitura</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:36px;" class="reveal">
+      <a href="#contato" style="display:inline-block;border:0.5px solid var(--border);color:var(--text-muted);padding:12px 32px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:all .25s;" onmouseover="this.style.borderColor='var(--gold-dim)';this.style.color='var(--gold)';" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)';">
+        Ver todos os artigos
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- ═══════════════ COTAÇÃO ═══════════════ -->
+<section id="contato">
+  <div class="section-wrap">
+    <div class="quote-grid">
+      <div class="reveal">
+        <span class="eyebrow">Solicitar Cotação</span>
+        <h2 class="h2">Sua cotação <em>exclusiva</em> em até 24h</h2>
+        <p class="lead" style="margin-bottom:44px;">Nossa equipe de especialistas analisa cada caso individualmente e apresenta as melhores opções de cobertura disponíveis no mercado.</p>
+
+        <div class="contact-info-block">
+          <!-- EDITAR: CONTATOS -->
+          <div class="ci-row">
+            <div class="ci-label">WhatsApp &amp; Telefone</div>
+            <div class="ci-value">
+              <a href="https://wa.me/5521981075500">+55 21 98107.5500</a><br>
+              <a href="tel:+552139423709">+55 21 3942.3709</a><br>
+              <a href="tel:+13253401168">+1 325 340 1168</a>
+            </div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-label">E-mail</div>
+            <div class="ci-value">
+              <a href="mailto:contato@focoartseguros.com.br">contato@focoartseguros.com.br</a>
+            </div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-label">Endereço</div>
+            <div class="ci-value">
+              Av. Geremário Dantas, 807<br>
+              Sala 535/536 — Jacarepaguá<br>
+              Rio de Janeiro — RJ · CEP 22743-011
+            </div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-label">Horário de Atendimento</div>
+            <div class="ci-value">Seg–Sex: 9h–18h<br>Emergências: 24/7</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="form-wrap">
+          <!-- Sugestões rápidas -->
+          <div style="margin-bottom:22px;">
+            <p style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:12px;">Selecione o que deseja proteger:</p>
+            <!-- EDITAR: SUGESTÕES DE COTAÇÃO -->
+            <div class="suggestion-pills" id="pills">
+              <button class="pill" onclick="selectPill(this,'Obras de Arte')">🎨 Obras de Arte</button>
+              <button class="pill" onclick="selectPill(this,'Joias e Relógios')">💎 Joias &amp; Relógios</button>
+              <button class="pill" onclick="selectPill(this,'Automóvel de Colecionador')">🏎️ Automóvel Clássico</button>
+              <button class="pill" onclick="selectPill(this,'Adega e Vinhos')">🍷 Adega &amp; Vinhos</button>
+              <button class="pill" onclick="selectPill(this,'Hole in One / Golfe')">⛳ Hole in One / Golfe</button>
+              <button class="pill" onclick="selectPill(this,'Coleção Especial')">🏺 Coleção Especial</button>
+              <button class="pill" onclick="selectPill(this,'Bolsas de Luxo')">👜 Bolsas de Luxo</button>
+              <button class="pill" onclick="selectPill(this,'Riscos Corporativos')">🏛️ Riscos Corporativos</button>
+              <button class="pill" onclick="selectPill(this,'Múltiplos Itens')">✦ Múltiplos Itens</button>
+            </div>
+          </div>
+
+          <form id="quote-form" onsubmit="submitQuote(event)" style="display:flex;flex-direction:column;gap:14px;">
+            <input type="hidden" id="selected-segment" value="">
+
+            <div class="form-col-2">
+              <div class="form-group">
+                <label>Nome completo</label>
+                <input type="text" id="f-nome" placeholder="Seu nome" required>
+              </div>
+              <div class="form-group">
+                <label>WhatsApp</label>
+                <input type="tel" id="f-tel" placeholder="+55 21 9xxxx-xxxx">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>E-mail</label>
+              <input type="email" id="f-email" placeholder="seu@email.com" required>
+            </div>
+
+            <div class="form-col-2">
+              <div class="form-group">
+                <label>Valor estimado do bem</label>
+                <select id="f-valor">
+                  <option value="" disabled selected>Faixa de valor</option>
+                  <option>Até R$ 100 mil</option>
+                  <option>R$ 100k – R$ 500k</option>
+                  <option>R$ 500k – R$ 1 milhão</option>
+                  <option>R$ 1M – R$ 5 milhões</option>
+                  <option>Acima de R$ 5 milhões</option>
+                  <option>Prefiro não informar</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Local do bem</label>
+                <select id="f-local">
+                  <option value="" disabled selected>Onde está</option>
+                  <option>Residência</option>
+                  <option>Galeria / Estabelecimento</option>
+                  <option>Em trânsito / Viagem</option>
+                  <option>Múltiplos locais</option>
+                  <option>Exterior</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Descreva brevemente o bem ou coleção</label>
+              <textarea id="f-msg" placeholder="Ex: Coleção de 12 pinturas brasileiras do século XX, avaliadas por galeria em 2024..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submit-btn">Enviar Solicitação de Cotação</button>
+            <p class="form-fine">🔒 Suas informações são tratadas com total confidencialidade · LGPD compliant</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- ═══════════════ PORTAL CLIENTE ═══════════════ -->
+<section id="portal" class="stripe">
+  <div class="section-wrap">
+    <div class="section-header center reveal">
+      <span class="eyebrow">Área do Segurado</span>
+      <h2 class="h2">Portal <em>exclusivo</em> para clientes</h2>
+      <p class="lead center">Acesse suas apólices, documentos, histórico de sinistros e muito mais com segurança e privacidade.</p>
+    </div>
+
+    <div style="max-width:500px;margin:44px auto 0;" class="reveal">
+      <div class="portal-wrap">
+        <!-- Estado: LOGIN -->
+        <div id="portal-login">
+          <p class="portal-title">Acesso ao Portal</p>
+          <p class="portal-sub">Entre com suas credenciais para visualizar suas apólices e documentos de forma segura.</p>
+
+          <div class="portal-tabs">
+            <button class="ptab active" onclick="portalTab('cliente',this)">Cliente</button>
+            <button class="ptab" onclick="portalTab('parceiro',this)">Parceiro</button>
+            <button class="ptab" onclick="portalTab('admin',this)">Administrador</button>
+          </div>
+
+          <div class="portal-form-panel active" id="ptab-cliente">
+            <div class="form-group">
+              <label>CPF / CNPJ</label>
+              <input type="text" placeholder="000.000.000-00" id="p-cpf">
+            </div>
+            <div class="form-group">
+              <label>Senha</label>
+              <input type="password" placeholder="••••••••" id="p-pass">
+            </div>
+            <button class="btn-portal" onclick="doLogin()">Acessar Minha Área</button>
+            <p class="portal-note"><a href="#contato" style="color:var(--gold-dim);text-decoration:none;">Esqueci minha senha</a> · <a href="#contato" style="color:var(--gold-dim);text-decoration:none;">Primeiro acesso</a></p>
+          </div>
+
+          <div class="portal-form-panel" id="ptab-parceiro">
+            <div class="form-group">
+              <label>E-mail de Parceiro</label>
+              <input type="email" placeholder="parceiro@empresa.com">
+            </div>
+            <div class="form-group">
+              <label>Código de Parceiro</label>
+              <input type="text" placeholder="FA-XXXXX">
+            </div>
+            <div class="form-group">
+              <label>Senha</label>
+              <input type="password" placeholder="••••••••">
+            </div>
+            <button class="btn-portal" onclick="doLogin()">Acessar Portal Parceiro</button>
+          </div>
+
+          <div class="portal-form-panel" id="ptab-admin">
+            <div class="form-group">
+              <label>Login Administrativo</label>
+              <input type="email" placeholder="admin@focoartseguros.com.br">
+            </div>
+            <div class="form-group">
+              <label>Senha</label>
+              <input type="password" placeholder="••••••••">
+            </div>
+            <div class="form-group">
+              <label>Código 2FA</label>
+              <input type="text" placeholder="000000">
+            </div>
+            <button class="btn-portal" onclick="doLogin()">Acessar Painel Admin</button>
+          </div>
+        </div>
+
+        <!-- Estado: DASHBOARD (demo) -->
+        <div class="dashboard-mock" id="portal-dashboard">
+          <div class="dash-header">
+            <span class="dash-greeting">Olá, <em style="color:var(--gold);font-style:italic;">Carlos Menezes</em></span>
+            <button class="dash-logout" onclick="doLogout()">Sair →</button>
+          </div>
+          <div style="height:0.5px;background:var(--border);"></div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:0.5px solid var(--border);">
+            <div style="background:var(--glass);padding:18px 16px;">
+              <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint);margin-bottom:4px;">Apólices Ativas</div>
+              <div style="font-family:var(--serif);font-size:28px;color:var(--gold);">3</div>
+            </div>
+            <div style="background:var(--glass);padding:18px 16px;">
+              <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint);margin-bottom:4px;">Próx. Vencimento</div>
+              <div style="font-family:var(--serif);font-size:18px;color:var(--text);">12 Set 2025</div>
+            </div>
+          </div>
+
+          <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dim);">Suas Apólices</p>
+
+          <div class="policy-card">
+            <div class="policy-num">Apólice #FA-2024-0047</div>
+            <div class="policy-name">Coleção de Arte — Residência</div>
+            <div class="policy-meta">Vigência: Jan 2025 – Jan 2026 · Valor segurado: R$ 2.400.000</div>
+            <span class="policy-status">● Ativa</span>
+          </div>
+
+          <div class="policy-card">
+            <div class="policy-num">Apólice #FA-2024-0089</div>
+            <div class="policy-name">Joias &amp; Relógios de Coleção</div>
+            <div class="policy-meta">Vigência: Mar 2025 – Mar 2026 · Valor segurado: R$ 680.000</div>
+            <span class="policy-status">● Ativa</span>
+          </div>
+
+          <div class="policy-card">
+            <div class="policy-num">Apólice #FA-2025-0012</div>
+            <div class="policy-name">Automóvel Ferrari 355 Berlinetta</div>
+            <div class="policy-meta">Vigência: Set 2025 – Set 2026 · Valor acordado: R$ 990.000</div>
+            <span class="policy-status">● Ativa</span>
+          </div>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button style="flex:1;padding:11px;background:var(--surface);border:0.5px solid var(--border);color:var(--text-muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:var(--sans);" onmouseover="this.style.borderColor='var(--gold-dim)';this.style.color='var(--gold)';" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)';">
+              Documentos
+            </button>
+            <button style="flex:1;padding:11px;background:var(--surface);border:0.5px solid var(--border);color:var(--text-muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:var(--sans);" onmouseover="this.style.borderColor='var(--gold-dim)';this.style.color='var(--gold)';" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)';">
+              Sinistros
+            </button>
+            <button style="flex:1;padding:11px;background:var(--surface);border:0.5px solid var(--border);color:var(--text-muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:var(--sans);" onmouseover="this.style.borderColor='var(--gold-dim)';this.style.color='var(--gold)';" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)';">
+              Contato
+            </button>
+          </div>
+          <p style="font-size:11px;color:var(--text-faint);text-align:center;">Para acesso real ao portal, entre em contato com seu consultor para ativação.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <!-- EDITAR: RODAPÉ MARCA -->
+      <div class="footer-brand">Foco Art Seguros</div>
+      <p class="footer-tagline">Especialistas em seguros para arte, coleções e o mercado de luxo. Rio de Janeiro, desde 2004.</p>
+      <div style="margin-top:20px;display:flex;gap:14px;">
+        <a href="#" style="font-size:12px;color:var(--text-faint);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-faint)'">Instagram</a>
+        <a href="#" style="font-size:12px;color:var(--text-faint);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-faint)'">LinkedIn</a>
+        <a href="#" style="font-size:12px;color:var(--text-faint);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-faint)'">Facebook</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Segmentos</h4>
+      <ul>
+        <li><a href="#segmentos">Obras de Arte</a></li>
+        <li><a href="#segmentos">Joias &amp; Relógios</a></li>
+        <li><a href="#segmentos">Automóveis Clássicos</a></li>
+        <li><a href="#segmentos">Adegas &amp; Vinhos</a></li>
+        <li><a href="#segmentos">Golfe &amp; Hole in One</a></li>
+        <li><a href="#segmentos">Coleções Especiais</a></li>
+        <li><a href="#segmentos">Bolsas de Luxo</a></li>
+        <li><a href="#segmentos">Riscos Corporativos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="#sobre">Sobre Nós</a></li>
+        <li><a href="#parceiros">Parceiros</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#portal">Área do Cliente</a></li>
+        <li><a href="mailto:parcerias@focoartseguros.com.br">Seja Parceiro</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <!-- EDITAR: CONTATOS RODAPÉ -->
+      <h4>Contato</h4>
+      <ul>
+        <li><a href="https://wa.me/5521981075500">+55 21 98107.5500</a></li>
+        <li><a href="tel:+552139423709">+55 21 3942.3709</a></li>
+        <li><a href="mailto:contato@focoartseguros.com.br">contato@focoartseguros.com.br</a></li>
+        <li><a href="#">Jacarepaguá · RJ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Foco Art Seguros. Todos os direitos reservados.</p>
+    <p class="footer-reg">Corretor Habilitado SUSEP · Registro CNPJ ativo · LGPD compliant</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FAB -->
+<a href="https://wa.me/5521981075500?text=Olá! Gostaria de solicitar uma cotação." class="wa-fab" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ═══════════════ MODALS ═══════════════ -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal-box" id="modal-box">
+    <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    <span class="modal-icon" id="modal-icon"></span>
+    <h2 class="modal-title" id="modal-title"></h2>
+    <p class="modal-sub" id="modal-sub"></p>
+    <ul class="modal-features" id="modal-features"></ul>
+    <a href="#contato" class="btn-modal-cta" onclick="closeModalDirect()">Solicitar Cotação para este Segmento</a>
+  </div>
+</div>
+
+<!-- BLOG POST MODAL -->
+<div class="modal-overlay" id="blog-modal" onclick="closeBlogModal(event)">
+  <div class="modal-box" id="blog-modal-box">
+    <button class="modal-close" onclick="document.getElementById('blog-modal').classList.remove('open')">✕</button>
+    <span class="modal-icon" id="bm-icon"></span>
+    <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:6px;" id="bm-tag"></div>
+    <h2 class="modal-title" id="bm-title"></h2>
+    <div id="bm-body" style="font-size:14px;line-height:1.8;color:var(--text-muted);margin-top:16px;"></div>
+    <a href="#contato" class="btn-modal-cta" onclick="document.getElementById('blog-modal').classList.remove('open');closeModalDirect();" style="margin-top:24px;">Falar com um especialista</a>
+  </div>
+</div>
+
+<script>
+// ═══════════════ EDITAR: DADOS DOS SEGMENTOS ═══════════════
+// Para adicionar/editar segmentos, modifique o objeto abaixo
+const SEGMENTS = {
+  arte: {
+    icon: '🎨',
+    title: 'Seguro para Obras de Arte',
+    sub: 'Proteção especializada para coleções em qualquer ambiente — residências, galerias, museus e em trânsito.',
+    features: [
+      'Cobertura all risk — danos acidentais, roubo, incêndio e catástrofes',
+      'Proteção durante transporte nacional e internacional',
+      'Obras em exposição, galerias e instituições culturais',
+      'Avaliação periódica com peritos especializados certificados',
+      'Restauração por profissionais habilitados em caso de sinistro',
+      'Inventário digital seguro com documentação fotográfica',
+      'Cobertura de obras em processo de restauração ou empréstimo'
+    ]
+  },
+  joias: {
+    icon: '💎',
+    title: 'Seguro para Joias & Relógios',
+    sub: 'Cobertura completa para peças de alta joalheria e relojoaria de colecionador em qualquer circunstância.',
+    features: [
+      'Proteção para uso diário, viagens internacionais e em cofres',
+      'Cobertura contra roubo, furto qualificado e perda acidental',
+      'Relógios: Rolex, Patek Philippe, Audemars Piguet, Richard Mille',
+      'Laudo de avaliação incluso no processo de contratação',
+      'Reposição pelo valor de mercado atualizado — sem depreciação',
+      'Cobertura em eventos, exposições e viagens ao exterior',
+      'Extensão de cobertura para joias em trânsito para conserto'
+    ]
+  },
+  carros: {
+    icon: '🏎️',
+    title: 'Seguro para Automóveis de Colecionador',
+    sub: 'Cobertura especializada para veículos raros, históricos e de alto valor de mercado.',
+    features: [
+      'Valor acordado — sem depreciação por tabela FIPE convencional',
+      'Cobertura em exposições, concursos de elegância e pistas',
+      'Transporte em prancha e guincho especializado cobertos',
+      'Assistência 24h com técnicos em veículos clássicos',
+      'Revisão anual de valor com perito automotivo certificado',
+      'Cobertura de peças raras e acessórios originais',
+      'Proteção em viagens e roteiros turísticos intermunicipais'
+    ]
+  },
+  adega: {
+    icon: '🍷',
+    title: 'Seguro para Adegas & Vinhos Finos',
+    sub: 'Proteção completa para coleções de vinho, espumantes e destilados raros de alto valor.',
+    features: [
+      'Quebra acidental de garrafas e danos físicos à coleção',
+      'Furto e roubo — dentro e fora da adega',
+      'Danos por falha de temperatura, umidade ou queda de energia',
+      'Cobertura em transporte, importação e depósitos externos',
+      'Inventário digital com avaliação por sommelier parceiro certificado',
+      'Proteção de rótulos raros — Pétrus, DRC, Screaming Eagle e outros',
+      'Cobertura de adegas climatizadas como equipamento'
+    ]
+  },
+  golfe: {
+    icon: '⛳',
+    title: 'Seguro Hole in One & Golfe',
+    sub: 'Cobertura especializada para o universo do golfe de alto nível — de torneios a equipamentos premium.',
+    features: [
+      'Seguro hole in one para torneios amadores e profissionais',
+      'Carrinhos de golfe elétricos de alto valor e customizados',
+      'Equipamentos premium — Titleist, Callaway, Ping, TaylorMade',
+      'Eventos e campeonatos com premiações e gifts especiais',
+      'Responsabilidade civil — danos a terceiros no campo',
+      'Cobertura para pro-ams e torneios beneficentes',
+      'Proteção de equipamentos em viagens e competições no exterior'
+    ]
+  },
+  colecoes: {
+    icon: '🏺',
+    title: 'Seguro para Coleções Especiais',
+    sub: 'De selos a tênis de luxo — toda coleção extraordinária merece uma proteção igualmente especial.',
+    features: [
+      'Selos, moedas, cédulas raras e numismática em geral',
+      'Cards colecionáveis — Pokémon, sports cards, primeiros impressos',
+      'Tênis, bolsas e peças de moda de alto valor de revenda',
+      'Instrumentos musicais históricos ou de concerto',
+      'Action figures, brinquedos vintage e objetos de pop art',
+      'Livros raros, manuscritos e peças históricas',
+      'Cobertura adaptada e personalizada para cada tipo de item'
+    ]
+  },
+  bolsas: {
+    icon: '👜',
+    title: 'Seguro para Bolsas de Luxo',
+    sub: 'Proteção especializada para bolsas de grife de alto valor — do uso diário ao investimento patrimonial.',
+    features: [
+      'Hermès Birkin & Kelly — cobertura pelo valor real de mercado secundário',
+      'Chanel Flap, Louis Vuitton edições limitadas, Dior e outras maisons',
+      'Proteção contra roubo, furto, danos acidentais e perda',
+      'Cobertura em viagens nacionais e internacionais',
+      'Laudo de autenticidade e avaliação com especialistas certificados',
+      'Proteção para coleções em armários, cofres e exposição',
+      'Reposição pelo valor atualizado — sem depreciação por tabela convencional'
+    ]
+  },
+  corp: {
+    icon: '🏛️',
+    title: 'Riscos Corporativos',
+    sub: 'Soluções completas de seguros especiais para empresas — proteção patrimonial, executiva, cibernética e de responsabilidade civil.',
+    features: [
+      '<strong>Seguro Garantia</strong> — bid bond, performance bond, advance payment; cumprimento de obrigações contratuais e licitatórias',
+      '<strong>Cyber Insurance</strong> — cobertura contra ataques ransomware, vazamento de dados, interrupção de sistemas e responsabilidade por violação de privacidade (LGPD/GDPR)',
+      '<strong>Directors & Officers (D&O)</strong> — proteção pessoal de diretores e conselheiros contra ações por decisões de gestão',
+      '<strong>Erros & Omissões (E&O)</strong> — responsabilidade civil profissional para prestadores de serviço, consultorias e escritórios',
+      '<strong>Saúde Empresarial</strong> — planos coletivos empresariais com coberturas ampliadas para executivos e equipes',
+      '<strong>Vida Empresarial</strong> — seguro de vida em grupo, key person e sócio-protegido para continuidade do negócio',
+      '<strong>Transportes (RCTR-C / RC-DC / RC-V)</strong> — responsabilidade civil do transportador rodoviário de cargas, desaparecimento de carga e valor declarado',
+      '<strong>RC Geral & Operações</strong> — responsabilidade civil de operações, produtos, estabelecimento e eventos corporativos'
+    ]
+  }
+};
+
+// ═══════════════ BLOG DATA ═══════════════
+const BLOG_ICONS = { arte:'🎨', joias:'💎', carros:'🏎️', adega:'🍷', golfe:'⛳', colecoes:'🏺', bolsas:'👜', corp:'🏛️' };
+const BLOG_TAGS  = { arte:'Obras de Arte', joias:'Joias & Relógios', carros:'Automóveis', adega:'Vinhos', golfe:'Golfe', colecoes:'Coleções', bolsas:'Bolsas de Luxo', corp:'Riscos Corporativos' };
+const BLOG_EXCERPTS = {
+  arte: 'O mercado de arte movimenta bilhões anualmente, mas a maior parte dos colecionadores brasileiros mantém suas obras subprotegidas ou sem cobertura adequada. Neste artigo, especialistas explicam os critérios essenciais para uma avaliação correta e como isso impacta diretamente o pagamento em caso de sinistro.',
+  joias: 'Nos últimos cinco anos, relógios de luxo tornaram-se uma das classes de ativos com melhor desempenho no mundo. Com valorização expressiva, a necessidade de uma apólice especializada — e não apenas uma extensão do seguro residencial — tornou-se obrigatória para qualquer colecionador sério.',
+  carros: 'A tabela FIPE foi criada para veículos comuns e não reflete o mercado de carros históricos e de colecionador, onde valores de mercado podem superar em 3 a 5 vezes o preço tabelado. Entenda como funciona o seguro por valor acordado e por que ele é indispensável para seu veículo especial.',
+  adega: 'Um Pétrus 2000 pode ultrapassar R$ 60 mil por garrafa. Uma cave de 500 rótulos selecionados pode representar um patrimônio de R$ 2 milhões ou mais. Neste guia, exploramos os principais riscos enfrentados por colecionadores e como estruturar uma apólice adequada.',
+  golfe: 'Fazer um hole in one é o sonho de todo golfista, mas poucos sabem que essa façanha pode gerar uma obrigação financeira expressiva — é tradição que o jogador pague uma rodada para todos os presentes. O seguro cobre essa e outras situações em torneios e campeonatos de qualquer porte.',
+  colecoes: 'O mercado de colecionáveis vive um momento sem precedentes. Cards Pokémon se tornaram objetos de investimento, tênis raros atingem dezenas de milhares de reais e brinquedos vintage são arrematados por fortunas em leilões internacionais. A cobertura adequada para esses itens ainda é pouco conhecida no Brasil.',
+  bolsas: 'Uma Birkin 25 em crocodilo pode superar R$ 300 mil. O mercado secundário de bolsas de luxo cresceu mais de 80% nos últimos cinco anos, tornando peças da Hermès, Chanel e Louis Vuitton ativos de investimento tão relevantes quanto joias ou obras de arte. Entenda por que o seguro residencial convencional não oferece proteção adequada para essas peças e como estruturar uma apólice à altura do valor da sua coleção.',
+  corp: 'Com a LGPD em plena vigência e o ambiente regulatório em constante evolução, empresas de todos os portes enfrentam riscos que não existiam há uma década. Ataques cibernéticos, ações contra administradores, falhas em contratos públicos e responsabilidades profissionais exigem coberturas específicas que vão muito além do seguro empresarial tradicional. Saiba como estruturar um programa de riscos corporativos completo e aderente à realidade do seu negócio.'
+};
+
+// ═══════════════ HERO SLIDESHOW ═══════════════
+let currentSlide = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.slide-dot');
+let slideInterval;
+
+function goSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = n;
+  slides[currentSlide].classList.add('active');
+  slides[currentSlide].style.animation = 'none';
+  slides[currentSlide].offsetHeight;
+  slides[currentSlide].style.animation = '';
+  dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() { goSlide((currentSlide + 1) % slides.length); }
+
+slideInterval = setInterval(nextSlide, 5000);
+
+// ═══════════════ SEGMENT MODALS ═══════════════
+function openModal(key) {
+  const d = SEGMENTS[key];
+  if (!d) return;
+  document.getElementById('modal-icon').textContent = d.icon;
+  document.getElementById('modal-title').textContent = d.title;
+  document.getElementById('modal-sub').textContent = d.sub;
+  document.getElementById('modal-features').innerHTML = d.features.map(f => `<li>${f}</li>`).join('');
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(e) { if (e.target === document.getElementById('modal-overlay')) closeModalDirect(); }
+function closeModalDirect() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ═══════════════ BLOG ═══════════════
+function switchBlog(cat, btn) {
+  document.querySelectorAll('.blog-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.blog-card').forEach(c => {
+    c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none';
+  });
+}
+function openBlogPost(title, cat) {
+  document.getElementById('bm-icon').textContent = BLOG_ICONS[cat] || '📰';
+  document.getElementById('bm-tag').textContent = BLOG_TAGS[cat] || cat;
+  document.getElementById('bm-title').textContent = title;
+  document.getElementById('bm-body').innerHTML = `<p>${BLOG_EXCERPTS[cat] || 'Conteúdo em breve.'}</p><br><p style="color:var(--text-faint);font-size:13px;">Este é um resumo. Para acesso ao artigo completo, entre em contato com nossa equipe ou assine nossa newsletter especializada.</p>`;
+  document.getElementById('blog-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeBlogModal(e) {
+  if (e.target === document.getElementById('blog-modal')) {
+    document.getElementById('blog-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+// ═══════════════ COTAÇÃO / PILLS ═══════════════
+function selectPill(el, value) {
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('selected-segment').value = value;
+  const msgField = document.getElementById('f-msg');
+  if (!msgField.value) msgField.placeholder = `Conte-nos sobre seu(s) ${value.toLowerCase()}...`;
+}
+
+function submitQuote(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = '✓ Solicitação recebida — retornaremos em até 24h';
+  btn.style.background = '#1E5C3A';
+  btn.style.color = '#a8e6c2';
+  setTimeout(() => {
+    btn.textContent = 'Enviar Solicitação de Cotação';
+    btn.style.background = '';
+    btn.style.color = '';
+    e.target.reset();
+    document.querySelectorAll('.pill').forEach(p => p.classList.remove('selected'));
+  }, 5000);
+}
+
+// ═══════════════ PORTAL ═══════════════
+function portalTab(tab, btn) {
+  document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.portal-form-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('ptab-' + tab).classList.add('active');
+}
+function doLogin() {
+  // Demo only — shows mock dashboard
+  document.getElementById('portal-login').style.display = 'none';
+  document.getElementById('portal-dashboard').classList.add('visible');
+}
+function doLogout() {
+  document.getElementById('portal-login').style.display = '';
+  document.getElementById('portal-dashboard').classList.remove('visible');
+}
+
+// ═══════════════ SCROLL REVEAL ═══════════════
+const revEls = document.querySelectorAll('.reveal');
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+revEls.forEach(el => revObs.observe(el));
+
+// ═══════════════ COUNTERS ═══════════════
+function animCount(el, target) {
+  let cur = 0;
+  const step = target / 55;
+  const suf = el.dataset.suffix || '';
+  const iv = setInterval(() => {
+    cur = Math.min(cur + step, target);
+    el.textContent = Math.round(cur) + suf;
+    if (cur >= target) clearInterval(iv);
+  }, 18);
+}
+const trustObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('[data-target]').forEach(el => animCount(el, parseInt(el.dataset.target)));
+      trustObs.disconnect();
+    }
+  });
+}, { threshold: 0.5 });
+const tb = document.querySelector('.trust-bar');
+if (tb) trustObs.observe(tb);
+
+// NAV scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('main-nav').style.background =
+    window.scrollY > 50 ? 'rgba(4,6,10,0.98)' : 'var(--glass-2)';
+});
+
+// Keyboard ESC
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeModalDirect();
+    document.getElementById('blog-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+</script>
+</body>
+</html>
