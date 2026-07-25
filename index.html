@@ -505,7 +505,7 @@ footer {
 
 /* ===== WHATSAPP FAB ===== */
 .wa-fab {
-  position: fixed; bottom: 26px; right: 26px; z-index: 600;
+  position: fixed; bottom: 100px; right: 26px; z-index: 600;
   width: 54px; height: 54px; border-radius: 50%;
   background: #25D366; display: flex; align-items: center; justify-content: center;
   text-decoration: none;
@@ -1725,5 +1725,42 @@ document.addEventListener('keydown', e => {
   }
 });
 </script>
+<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+  createChat({
+    webhookUrl: 'https://viniterk.app.n8n.cloud/webhook/35469778-bc9b-413a-89fd-a1f95a508a12/chat',
+    mode: 'window', // abre como balãozinho flutuante, igual o wa-fab que já existe
+    showWelcomeScreen: false,
+    initialMessages: [
+      'Olá! 👋 Sou o assistente virtual da Foco Art Seguros. Posso te ajudar a entender nossas soluções para arte, joias, veículos de coleção, vinhos, golfe e muito mais. Como posso te ajudar?'
+    ],
+    i18n: {
+      en: {
+        title: 'Foco Art Seguros',
+        subtitle: 'Proteção para o extraordinário',
+        inputPlaceholder: 'Digite sua pergunta...',
+      },
+    },
+  });
+</script>
+
+<style>
+  :root {
+    --chat--color-primary: #C9A84C;
+    --chat--color-primary-shade-50: #b8973f;
+    --chat--color-secondary: #04060A;
+    --chat--toggle--background: #C9A84C;
+    --chat--toggle--color: #04060A;
+    --chat--header--background: #04060A;
+    --chat--header--color: #F0EBE0;
+    --chat--message--user--background: #C9A84C;
+    --chat--message--user--color: #04060A;
+    --chat--window--width: 400px;
+    --chat--window--height: 600px;
+    --chat--font-family: 'Inter', system-ui, sans-serif;
+  }
+</style>
 </body>
 </html>
